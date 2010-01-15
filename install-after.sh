@@ -37,23 +37,25 @@ FixDocs()
 
     dir=$root/usr/share/doc/stgit
 
-    [ -d $dir ] && Cmd rmdir $dir
+    if [ -d $dir ]; then
+    	Cmd rmdir $dir
+    fi
 }
 
 MoveDirs()
 {
     from=$root/usr/share/stgit
 
-    for dir in $from/{contrib,examples}
+    for dir in $from/contrib # $from/examples
     do
-      [ -d $dir ] || continue
+      [ -d "$dir" ] || continue
       Cmd mv $dir $DOCDIR/
     done
 }
 
 EchoIgnore ()
 {
-    echo ".... IGNORE MESSAGES: [sh: ../stg: No such file or directory]"
+    echo ">> IGNORE MESSAGES LIKE: [sh: ../stg: No such file or directory]"
 }
 
 MakeManuals()

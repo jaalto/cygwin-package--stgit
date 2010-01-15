@@ -1,6 +1,5 @@
 To: cygwin-announce@cygwin.com
-Subject: Updated: package N.N
-Subject: New package: stgit 0.13-1 -- Quilt functionality on top of git
+Subject: Updated: stgit 0.15-1 -- Quilt functionality on top of git
 
 PACKAGE DESCRIPTION
 ===================
@@ -17,7 +16,7 @@ using standard git functionality.
 CHANGES SINCE LAST RELEASE
 ==========================
 
-Not applicaple.
+See "News" at Homepage.
 
 INSTALL OR UPGRADE NOTES
 ========================
