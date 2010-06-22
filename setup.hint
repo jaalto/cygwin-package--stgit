@@ -5,4 +5,4 @@ git commands and the patches are stored as git commit objects,
 allowing easy merging of the stgit patches into other repositories
 using standard git functionality."
 category: Devel Python
-requires: git python
+requires: python git
