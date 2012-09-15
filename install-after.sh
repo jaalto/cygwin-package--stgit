@@ -13,7 +13,7 @@ set -e
 
 Environment()
 {
-    DOCDIR=$(cd $root/usr/share/doc/stgit-*/; pwd)
+    DOCDIR=$(cd $root/usr/share/doc/stgit; pwd)
 }
 
 Cmd()
@@ -25,21 +25,15 @@ Cmd()
 
 FixDocs()
 {
-    # For some reason hese are symlinks. Replace with real files
+    # For some reason these are symlinks. Replace with real files
 
     for file in $DOCDIR/*
     do
-      [ -h $file ] || continue
-
-      rm $file
-      cp $root/../Documentation/$(basename $file) $DOCDIR/
+      if [ -h $file ] ; then
+          rm $file
+          cp $root/../Documentation/$(basename $file) $DOCDIR/
+      fi
     done
-
-    dir=$root/usr/share/doc/stgit
-
-    if [ -d $dir ]; then
-    	Cmd rmdir $dir
-    fi
 }
 
 MoveDirs()
