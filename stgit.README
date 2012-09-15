@@ -48,15 +48,15 @@ Language:
 ------------------------------------
 
 Build instructions:
-  unpack stgit-0.15-1-src.tar.bz2
+  unpack stgit-0.16-1-src.tar.bz2
     if you use setup to install this src package, it will be
     unpacked under /usr/src automatically
   cd /usr/src
   ./stgit*.sh all
 
 This will create:
-  stgit-0.15-1.tar.bz2
-  stgit-0.15-1-src.tar.bz2
+  stgit-0.16-1.tar.bz2
+  stgit-0.16-1-src.tar.bz2
 
 -------------------------------------------
 
@@ -68,6 +68,9 @@ Files included in the binary distribution:
 Port Notes:
 - stgit.1 was copied from Debian (not included in sources)
 
+----- version 0.16-1 -----
+- New upstream release 2012-09-15 Jari Aalto
+
 ----- version 0.15-2 -----
 - Python 2.6 2010-06-17 Jari Aalto
 
@@ -78,4 +81,4 @@ Port Notes:
 - Initial release 2007-09-07 Jari Aalto
 
 Cygwin port maintained by: Jari Aalto <jari.aalto@cante.net>
-Copyright (C) 2007-2010 Jari Aalto; Licenced under GPL v2 or later
+Copyright (C) 2007-2012 Jari Aalto; Licenced under GPL v2 or later
