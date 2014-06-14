@@ -1,0 +1,35 @@
+From 74fd6b277551453501e1fe55f7e7bbd873a3c26d Mon Sep 17 00:00:00 2001
+From: Pavel Roskin <proski@gnu.org>
+Date: Tue, 22 Oct 2013 10:31:26 -0400
+Subject: [PATCH 1/4] Catch more exceptions in compat_log_entry()
+
+Catch exceptions in default_repo().  Catch git.RepositoryException.
+This suppresses stack trace in "stg pull" on detached head and outside
+the repository.
+
+Signed-off-by: Pavel Roskin <proski@gnu.org>
+Signed-off-by: Catalin Marinas <catalin.marinas@gmail.com>
+---
+ stgit/lib/log.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/stgit/lib/log.py b/stgit/lib/log.py
+index dfadd51..d876ff6 100644
+--- a/stgit/lib/log.py
++++ b/stgit/lib/log.py
+@@ -359,10 +359,10 @@ class Fakestack(object):
+ def compat_log_entry(msg):
+     """Write a new log entry. (Convenience function intended for use by
+     code not yet converted to the new infrastructure.)"""
+-    repo = default_repo()
+     try:
++        repo = default_repo()
+         stack = repo.get_stack(repo.current_branch_name)
+-    except libstack.StackException, e:
++    except (libstack.StackException, git.RepositoryException), e:
+         out.warn(str(e), 'Could not write to stack log')
+     else:
+         if repo.default_index.conflicts() and stack.patchorder.applied:
+-- 
+1.9.1
+

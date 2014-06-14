@@ -1,0 +1,11 @@
+upstream_missing_test_files
+upstream_missing_doc_file
+use_editor_as_default
+stg-gitk_bashism
+remove_pyc_files
+upstream_0001-Catch-more-exceptions-in-compat_log_entry.patch
+upstream_0002-Restore-links-to-subcommand-s-manpages-from-the-stg-.patch
+upstream_0003-Improve-the-library-headers.patch
+upstream_0004-Close-stdin-before-killing-cat-process.patch
+disable_interactive_test
+debian_python_is_python2

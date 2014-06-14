@@ -1,0 +1,29 @@
+From 50369ba729478bf509c8a3851056da6d5ba25e0f Mon Sep 17 00:00:00 2001
+From: Mikhail Terekhov <termim@gmail.com>
+Date: Sun, 22 Dec 2013 14:49:09 -0500
+Subject: [PATCH 2/4] Restore links to subcommand's manpages from the stg(1)
+ manpage.
+
+stg(1) manpage is supposed to have links to all the subcommand's manpages like
+git(1) manpage. Supposedly a simple typo broke that.
+
+Signed-off-by: Catalin Marinas <catalin.marinas@gmail.com>
+---
+ stgit/commands/__init__.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/stgit/commands/__init__.py b/stgit/commands/__init__.py
+index bf07c82..eeaead8 100644
+--- a/stgit/commands/__init__.py
++++ b/stgit/commands/__init__.py
+@@ -93,6 +93,6 @@ def asciidoc_command_list(commands, f):
+         _write_underlined(kind, '~', f)
+         f.write('\n')
+         for cmd, help in cmds:
+-            f.write('linkstgsub:%s[]::\n' % cmd)
++            f.write('linkstg:%s[]::\n' % cmd)
+             f.write('    %s\n' % help)
+         f.write('\n')
+-- 
+1.9.1
+

@@ -1,0 +1,19 @@
+Description: Remove more pyc files
+Author: Yann Dirson <dirson@debian.org>
+Forwarded: no
+Last-Update: 2014-03-26
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+diff --git a/Makefile b/Makefile
+index c306881..4429dbc 100644
+--- a/Makefile
++++ b/Makefile
+@@ -34,7 +34,7 @@ clean:
+ 	done
+ 	rm -rf build
+ 	rm -f stgit/*.pyc
+-	rm -f stgit/commands/*.pyc
++	rm -f stgit/*/*.pyc
+ 	rm -f TAGS
+ 	rm -f stgit/commands/cmdlist.py
+ 
