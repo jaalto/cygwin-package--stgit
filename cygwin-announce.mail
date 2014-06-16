@@ -5,7 +5,7 @@ Subject: Updated: stgit 0.17.1-1 -- Quilt functionality on top of git
 PACKAGE DESCRIPTION
 ===================
 
-Homepage: http://procode.org/stgit
+Homepage: http://gna.org/projects/stgit
 License : GPL
 
 Offer similar functionality to quilt i.e. pushing/popping patches

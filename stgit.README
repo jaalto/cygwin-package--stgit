@@ -20,7 +20,8 @@ Build requirements:
   python
 
 Canonical homepage:
-  http://procode.org/stgit
+  http://gna.org/projects/stgit
+  http://procode.org/stgit (not updated since 0.16)
   http://packages.debian.org/stgit
 
 Canonical download:
