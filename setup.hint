@@ -1,3 +1,4 @@
+# ARCH=noarch
 sdesc: "Quilt functionality on top of git"
 ldesc: "Offer similar functionality to quilt i.e. pushing/popping patches
 to/from a stack) on top of git. These operations are performed using
