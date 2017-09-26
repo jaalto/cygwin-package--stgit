@@ -1,0 +1,27 @@
+From: Maximiliano Curia <maxy@debian.org>
+Date: Sat, 2 Sep 2017 14:06:57 +0200
+Subject: Disable test calling editor
+
+Upstream uses vi as the default editor, while the debian packages default to
+the editor command, thus the different behavior.
+
+Author: Maximiliano Curia <maxy@debian.org>
+Forwarded: not-needed
+Last-Update: 2014-03-26
+---
+ t/t3300-edit.sh | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/t/t3300-edit.sh b/t/t3300-edit.sh
+index 42152dd..d9dc864 100755
+--- a/t/t3300-edit.sh
++++ b/t/t3300-edit.sh
+@@ -2,6 +2,8 @@
+ test_description='Test "stg edit"'
+ 
+ . ./test-lib.sh
++test_done
++exit
+ 
+ test_expect_success 'Setup' '
+     printf "000\n111\n222\n333\n" >> foo &&
