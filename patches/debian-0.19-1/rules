@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+export prefix = /usr
+export PYTHON = python3
+UPSTREAM_VERSION ?= $(shell dpkg-parsechangelog -S Version | sed 's/.*://;s/-.*//')
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_clean:
+	dh_auto_clean
+	-rm stgit-completion.bash
+	-rm stgit/commands/cmdlist.py
+	-rm stgit/builtin_version.py
+
+override_dh_auto_build:
+	echo 'version = "$(UPSTREAM_VERSION)"' > stgit/builtin_version.py
+	# build with pybuild and run make doc
+	dh_auto_build
+	make doc
+
+override_dh_auto_install:
+	# dh_auto install calls make pybuild install,
+	dh_auto_install
+	# also call make install-doc and make install-html
+	DESTDIR=debian/stgit/ make install-doc install-html

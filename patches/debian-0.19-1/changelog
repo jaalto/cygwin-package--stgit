@@ -1,0 +1,219 @@
+stgit (0.19-1) unstable; urgency=medium
+
+  [ Maximiliano Curia ]
+  * Update Vcs fields
+  * Test suite already runs at build time (Closes: 889175)
+  * Bump to Standards-Version 4.1.3
+  * Bump debhelper build-dep and compat to 11
+  * New upstream release (0.19).
+  * Drop obsolete --parallel dh parameter
+  * Update bash-completion install path
+  * Release to unstable
+
+  [ Ondřej Nový ]
+  * d/changelog: Remove trailing whitespaces
+
+ -- Maximiliano Curia <maxy@debian.org>  Thu, 03 Oct 2019 14:38:18 +0200
+
+stgit (0.18-1) sid; urgency=medium
+
+  * New patch: test_exit_1_on_fail
+  * Update autopkgtest testsuite. (Closes: #742997) Thanks to Antonio Terceiro
+  * Bump Standards-Version to 3.9.6, no changes needed.
+  * New upstream release (0.18).
+  * Bump Standards-Version to 4.1.0.
+  * Update Vcs fields
+  * Drop upstream patches
+  * Ignore the generated files update on clean
+  * Add dh-python build depends
+  * Avoid the git error messages when running stg outside of a git tree
+  * Release to sid
+
+ -- Maximiliano Curia <maxy@debian.org>  Sat, 02 Sep 2017 14:30:36 +0200
+
+stgit (0.17.1-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #669664, #465343, #600238, #656804)
+  * New maintainer. (Closes: #643801)
+  * Install additional documentation. (#Closes: #556525)
+
+ -- Maximiliano Curia <maxy@debian.org>  Wed, 26 Mar 2014 19:18:23 +0100
+
+stgit (0.15-1.1) unstable; urgency=low
+
+  * Non-maintainer upload for RC bugfix:
+  * Fix build, patch by Andreas Moog (Closes: #621802)
+
+ -- Moritz Muehlenhoff <jmm@debian.org>  Tue, 13 Mar 2012 16:46:04 +0100
+
+stgit (0.15-1) unstable; urgency=low
+
+  * New upstream release (Closes: #554910).
+    * contrib/diffcoll.sh is not shipped any more (Closes: #530195).
+    * Update debian/watch for new upstream download URL at gna.org.
+  * Use make instead of directly calling setup.py, to benefit from other
+    stuff like generation of bash completion.
+  * Added dependency of stgit-contrib to colordiff (Closes: #506401).
+  * Removed the Uploaders field (Closes: #478473, #508852).
+  * Fixed Makefile to remove all .pyc files on clean.
+  * Build-depend on git-core, remove hacks added to avoid that now that
+    they are not sufficient any more.
+  * Switch section from "devel" to "optional" to match archive override.
+  * Bumped Standards-Version to 3.8.3, no change.
+
+ -- Yann Dirson <dirson@debian.org>  Tue, 10 Nov 2009 21:49:50 +0100
+
+stgit (0.14.3-1) experimental; urgency=low
+
+  * "New" upstream release, to experimental because of lenny freeze.
+
+ -- Yann Dirson <dirson@debian.org>  Thu, 28 Aug 2008 22:42:43 +0200
+
+stgit (0.14.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Make the copyright notice more explicit to please lintian.
+
+ -- Yann Dirson <dirson@debian.org>  Fri, 04 Apr 2008 21:17:40 +0200
+
+stgit (0.14.1-4) unstable; urgency=low
+
+  * Changed default editor from "vi" to "editor" (Closes: #463819).
+  * Fixed bashisms in contrib/stg-gitk (Closes: #465360).
+  * Upgrade dependency on git-core to 1.5.3 or better for "git rev-parse
+    --is-inside-work-tree", and use an epoch (Closes: #461385).
+  * Declare depency on python 2.4 or higher through debian/pyversions
+    (Closes: #457826).
+  * Remove reference to cogito in old tutorial (Closes: #470131).
+  * Set myself as maintainer (Closes: #435200).
+  * Fixed typos in description (lintian).
+  * Move the Homepage link from extended description into a control field
+    (lintian).
+  * Bumped Standards-Version to 3.7.3, no change.
+
+ -- Yann Dirson <dirson@debian.org>  Mon, 24 Mar 2008 09:23:17 +0100
+
+stgit (0.14.1-3) unstable; urgency=low
+
+  * Corrected debian/copyright to read "version 2" and not "version 2 or
+    later" as GPL choice, as noted by ftpmaster team.
+
+ -- Yann Dirson <dirson@debian.org>  Thu, 20 Dec 2007 23:42:24 +0100
+
+stgit (0.14.1-2) unstable; urgency=low
+
+  * Rebuild so -contrib does include the scripts - the previous
+    dpkg-source run used "-i.git" which turns out not to have the intended
+    behaviour.
+
+ -- Yann Dirson <dirson@debian.org>  Tue, 18 Dec 2007 23:00:42 +0100
+
+stgit (0.14.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated package short description.
+  * New stgit-contrib package.
+  * Fix debian/rules to build things in binary-indep, not binary-arch.
+  * Add a call to "make clean" in clean target, somes generated files were
+    not removed.
+  * Update git versionned dependency to 1.5.2 or better.
+  * Disabled checking for git version at build time, so we don't need to
+    add a build-dep on git.
+  * Add a build-depend on xmlto for manpage generation.
+
+ -- Yann Dirson <dirson@debian.org>  Sun, 16 Dec 2007 17:34:12 +0100
+
+stgit (0.13-1) unstable; urgency=low
+
+  * New upstream release.
+  * Add debian/watch file.
+  * Build documentation, build-depend on asciidoc.
+  * Fixed Documentation/Makefile to ignore non-existent man7 material, and
+    to use /usr/share/man.
+  * Install all html doc in a new "html" subdir.
+
+ -- Yann Dirson <dirson@debian.org>  Sun, 29 Jul 2007 15:00:52 +0200
+
+stgit (0.12.1-4) unstable; urgency=medium
+
+  * Applied upstream fix for a bug possibly causing data loss during merge
+    in a corner case.
+
+ -- Yann Dirson <dirson@debian.org>  Tue,  1 May 2007 11:56:47 +0200
+
+stgit (0.12.1-3) unstable; urgency=low
+
+  * Upload to unstable (Closes: #418302).
+
+ -- Yann Dirson <dirson@debian.org>  Mon, 16 Apr 2007 22:17:12 +0200
+
+stgit (0.12.1-2) experimental; urgency=low
+
+  * Let upstream build procedure install in /usr/share/stgit: templates
+    and contrib are now available there.
+  * Install bash completions in /etc, overriding those from
+    git-completion.
+  * Removed useless dh_python call (lintian).
+
+ -- Yann Dirson <dirson@debian.org>  Mon, 26 Feb 2007 21:17:56 +0100
+
+stgit (0.12.1-1) experimental; urgency=low
+
+  * New upstream release, has better online help (Closes: #407238).
+  * Upload to experimental since this is not targetted to etch.
+  * Recommend git-core 1.5 or later, since stgit will work much better
+    then.
+  * Changed the fallback editor from "vi" to "editor" as per policy.
+  * Updated tutorial from the wiki.
+  * Also include StGITtheory doc from the wiki.
+
+ -- Yann Dirson <dirson@debian.org>  Sun, 25 Feb 2007 12:01:58 +0100
+
+stgit (0.11-1) unstable; urgency=low
+
+  * New upstream release (Closes: #396982).
+
+ -- Yann Dirson <dirson@debian.org>  Sun, 26 Nov 2006 22:33:54 +0100
+
+stgit (0.10-1) unstable; urgency=low
+
+  * New upstream release (Closes: #374043)
+  * Add Yann Dirson to Uploaders too
+  * Update to Policy 3.7.2
+  * Update to new Python policy (Closes: #380963)
+
+ -- Anand Kumria <wildfire@progsoc.org>  Sun,  2 Jul 2006 09:28:27 +1000
+
+stgit (0.9-1) unstable; urgency=low
+
+  * New upstream release (Closes: #362035)
+  * Include examples (Closes: #362196)
+  * Include documentation (Closes: #362195)
+
+ -- Anand Kumria <wildfire@progsoc.org>  Mon,  1 May 2006 06:21:58 +1000
+
+stgit (0.8.1-3) unstable; urgency=low
+
+  * Fixup spelling in Description (Closes: #353054)
+  * Remove the build directory on clean
+
+ -- Anand Kumria <wildfire@progsoc.org>  Thu,  2 Mar 2006 11:44:59 +1100
+
+stgit (0.8.1-2) unstable; urgency=low
+
+  * Depend on git-core (Closes: #352335)
+  * Build-Depend on python-dev (Closes: #352306)
+
+ -- Anand Kumria <wildfire@progsoc.org>  Sun, 12 Feb 2006 15:23:27 +1100
+
+stgit (0.8.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Anand Kumria <wildfire@progsoc.org>  Tue, 24 Jan 2006 12:04:11 +1100
+
+stgit (0.8-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Anand Kumria <wildfire@progsoc.org>  Sun, 25 Dec 2005 13:05:24 +1100

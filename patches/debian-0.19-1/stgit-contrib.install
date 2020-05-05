@@ -1,0 +1,4 @@
+contrib/stg-*            usr/bin/
+contrib/stgbashprompt.sh usr/share/doc/stgit-contrib/
+contrib/stgit.el         usr/share/doc/stgit-contrib/
+contrib/vim              usr/share/doc/stgit-contrib/

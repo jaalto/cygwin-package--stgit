@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>StGIT Wiki: StGITtheory</title><link type="text/css" rel="stylesheet" href="/cgi-bin/wiki.cgi/StyleSheetPage?raw=3" /><meta name="robots" content="INDEX,NOFOLLOW" /><link rel="alternate" type="application/rss+xml" title="StGIT Wiki" href="/cgi-bin/wiki.cgi?action=rss" /><link rel="alternate" type="application/rss+xml" title="StGIT Wiki: StGITtheory" href="/cgi-bin/wiki.cgi?action=rss;rcidonly=StGITtheory" /></head><body class="/cgi-bin/wiki.cgi"><div class="header"><span class="gotobar bar"><a class="local" href="/cgi-bin/wiki.cgi/HomePage">HomePage</a> <a class="local" href="/cgi-bin/wiki.cgi/RecentChanges">RecentChanges</a> </span><h1><a title="Click to search for references to this page" href="/cgi-bin/wiki.cgi?search=StGITtheory">StGITtheory</a></h1></div><div class="sidebar"></div><div class="content browse"><h2>A Bit of StGIT Patch Theory</h2><p>Every patch in <a class="local" href="/cgi-bin/wiki.cgi/StGIT">StGIT</a> is internally represented as two nodes - the bottom and the top. The nodes are commit IDs stored in the GIT object database. The actual patch is the diff between the trees corresponding to the bottom and the top nodes. This can be written as</p><pre class="real">P = diff(Nb, Nt)
+
+P  - patch
+Nb - bottom (start) node
+Nt - top (end) node
+</pre><p>The order of diff arguments is (old, new).</p><p>For an ordered stack of patches:</p><pre class="real">P1 = diff(N0, N1)
+P2 = diff(N1, N2)
+...
+
+Ps = P1 + P2 + P3 + ... = diff(Nsb, Nst)
+
+Ps  - the cumulative patch of the whole stack
+Nsb - bottom stack node (same as N0)
+Nst - top stack node (same as Nn)
+</pre><p>The plus sign presents superposition of patches. Please note that such superposition is not always commutative.</p><p>Whenever <a class="local" href="/cgi-bin/wiki.cgi/StGIT">StGIT</a> pulls changes from another repository, it unapplies (pops) all applied patches, updates the branch using git commands and tries to re-apply (push) the patches that were applied.</p><p>Popping a patch from the stack is done by simply setting the stack top Nst to the patch bottom Nb. Pushing is not always trivial and may need merging.</p><p>When pushing an unapplied patch P from the stack, it may happen that the patch bottom Nb is different from the stack top Nst, i.e. the patch was originally applied to a different tree. In this case, the patch needs to be adjusted to its new position on the stack. First, the new stack top is calculated by diff3 merging:</p><pre class="real">Nst' = diff3(Nst, Nb, Nt)
+</pre><p>The order of diff3 parameters is (branch1, ancestor, branch2).</p><p>If the merge succeeds, the patch is adjusted as following:</p><pre class="real">Nb' = Nst
+Nt' = Nst'
+P'  = diff(Nb', Nt')
+</pre><p>Nb' and Nt' become the new bottom and top nodes of the patch, and the stack top is advanced to Nst'.</p><p>If the the merge fails, the user is requested to resolve conflicts and refresh the patch by "stg refresh". It is also possible to undo the failed push by "stg push --undo".</p><p>This approach allows easy reordering of patches. To reorder applied patches, the user should pop them first and then push them back to the stack in the desired order. Unless the patches modify the same or adjacent lines in the same files, <a class="local" href="/cgi-bin/wiki.cgi/StGIT">StGIT</a> should be able to adjust the patches automatically for the new order.</p><h2>Layout of the .git Directory</h2><pre class="real">branches/		remote branches to pull (deprecated)
+hooks/			scripts executed by git on some events
+info/
+  exclude		list of files ignored for the purpose of commit
+  refs			list of commit IDs from refs/ (used on servers)
+objects/		git objects
+  00/			unpacked objects
+  ...
+  ff/
+  info/
+    packs		list of object packs
+  pack/			object packs
+    *.idx		index files
+    *.pack		actual pack files
+patches/		storage for StGIT patches
+  master/		patches for the master branch
+    patches/		storage for individual patches
+      patch1/		name of one of the StGIT patches
+        authdate	patch date
+        authemail	author's e-mail
+        authname	author's name
+        bottom		bottom ID of the patch
+        bottom.old	old bottom ID of the patch (for undo)
+        commemail	committer's e-mail
+        commname	committer's name
+        description	patch description
+        top		top ID of the patch
+        top.old		old top ID of the patch (for undo)
+      patch2/		name of another StGIT patch
+        ...
+    applied		list of applied patches
+    current		name of the topmost patch
+    description		branch description
+    protected		if present, the branch is protected against changes
+    unapplied		list of unapplied patches
+  other-branch/		patches for "other-branch"
+    ...
+refs/			various significant commit IDs
+  bases/		bottom commit IDs of the patch stacks
+  heads/		top commit IDs of branches
+  patches/		commit IDs of StGIT patches
+  tags/			commit IDs of tags (commit and tag objects)
+remotes/		remote branches to pull and push
+FETCH_HEAD		list of fetched branches and their commit IDs
+HEAD			reference to the current branch
+ORIG_HEAD		previous commit ID of the head branch
+config			configuration of the repository
+description		description of the repository
+index			directory cache
+</pre></div><div class="footer"><hr /><span class="gotobar bar"><a class="local" href="/cgi-bin/wiki.cgi/HomePage">HomePage</a> <a class="local" href="/cgi-bin/wiki.cgi/RecentChanges">RecentChanges</a> </span><span class="edit bar"><br /> <a class="local" href="/cgi-bin/wiki.cgi/Comments_On_StGITtheory">Comments On StGITtheory</a> <a href="/cgi-bin/wiki.cgi?action=password">This page is read-only</a> <a class="history" href="/cgi-bin/wiki.cgi?action=history;id=StGITtheory">View revisions</a> <a class="admin" href="/cgi-bin/wiki.cgi?action=admin;id=StGITtheory">Administration</a> <a href="http://www.memebot.com">Memebot</a> <a href="http://www.oddmuse.org">Oddmuse</a></span><span class="time"><br /> Last edited 2006-05-09 00:08 UTC by <a class="author" title="from h-64-105-159-118.phlapafg.covad.net" href="/cgi-bin/wiki.cgi/proski">proski</a> <a class="diff" href="/cgi-bin/wiki.cgi?action=browse;diff=2;id=StGITtheory">(diff)</a></span><form method="get" action="/cgi-bin/wiki.cgi" enctype="multipart/form-data" class="search">
+<p>Search: <input type="text" name="search"  size="20" accesskey="f" /> <input type="submit" name="dosearch" value="Go!" /></p></form></div>
+</body>
+</html>

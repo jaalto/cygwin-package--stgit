@@ -1,0 +1,41 @@
+Source: stgit
+Section: vcs
+Priority: optional
+Maintainer: Maximiliano Curia <maxy@debian.org>
+Build-Depends: asciidoc,
+               debhelper (>= 12~),
+               dh-exec,
+               dh-python,
+               python3,
+               git,
+               xmlto,
+Standards-Version: 4.4.1
+Homepage: http://www.procode.org/stgit/
+Vcs-Browser: https://salsa.debian.org/debian/stgit
+Vcs-Git: https://salsa.debian.org/debian/stgit.git
+
+Package: stgit
+Architecture: all
+Depends: git, ${misc:Depends}, ${python3:Depends}
+Description: manage stacks of patches in a git repository
+ stgit provides similar functionality to quilt
+ (i.e. pushing/popping patches to/from a stack) on top of git.
+ .
+ These operations are performed using git commands and the patches
+ are stored as git commit objects, allowing easy merging of the stgit
+ patches into other repositories using standard git functionality.
+
+Package: stgit-contrib
+Architecture: all
+Depends: colordiff, stgit, ${misc:Depends}, ${python3:Depends}
+Description: set of contributed script to help working with stgit
+ Among others, this package provides the following helper scripts:
+  * stg-gitk: show all patches in gitk, not only applied ones, and hide logs
+  * stg-whatchanged: examine changes that would modify the current patch
+  * stg-fold-files-from: pick specific hunks from another patch up the stack
+  * stg-dispatch: dispatch specific hunks into another patch down the stack
+  * stg-swallow: completely merge another patch into the current one
+  * stg-k: provide robust --keep functionality to all stgit commands
+ .
+ Most of the functionality of these scripts may one day be incorporated into
+ stgit.

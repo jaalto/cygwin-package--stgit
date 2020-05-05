@@ -1,7 +1,4 @@
 use_editor_as_default
 stg-gitk_bashism
-remove_pyc_files
 disable_interactive_test
-debian_python_is_python2
 Avoid-the-git-error-messages-when-running-stg-outside-of-.patch
-Use-a-scoped-builtin_version-file.patch

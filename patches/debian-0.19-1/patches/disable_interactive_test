@@ -13,7 +13,7 @@ Last-Update: 2014-03-26
  1 file changed, 2 insertions(+)
 
 diff --git a/t/t3300-edit.sh b/t/t3300-edit.sh
-index 42152dd..d9dc864 100755
+index 61baab8..392e1f3 100755
 --- a/t/t3300-edit.sh
 +++ b/t/t3300-edit.sh
 @@ -2,6 +2,8 @@

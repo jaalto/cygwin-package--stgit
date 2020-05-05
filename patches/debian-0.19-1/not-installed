@@ -1,0 +1,8 @@
+# Wrong path moved by dh-python
+usr/lib/python2.7/site-packages/stgit/
+# manpages are gzipped
+usr/share/man/man1/
+# dh-exec thingies
+dh-exec.*
+# eggfile
+usr/lib/python2.7/site-packages/stgit-*.egg-info
