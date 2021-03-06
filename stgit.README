@@ -49,15 +49,15 @@ Language:
 ------------------------------------
 
 Build instructions:
-  unpack stgit-0.19-1-src.tar.bz2
+  unpack stgit-0.19-2-src.tar.bz2
     if you use setup to install this src package, it will be
     unpacked under /usr/src automatically
   cd /usr/src
   ./stgit*.sh all
 
 This will create:
-  stgit-0.19-1.tar.xz
-  stgit-0.19-1-src.tar.xz
+  stgit-0.19-2.tar.xz
+  stgit-0.19-2-src.tar.xz
 
 -------------------------------------------
 
@@ -68,6 +68,10 @@ Files included in the binary distribution:
 
 Port Notes:
 - stgit.1 was copied from Debian (not included in sources)
+
+----- version 0.19-2 -----
+- New upstream release 2021-03-06 Jari Aalto
+- Python 3.8
 
 ----- version 0.19-1 -----
 - New upstream release 2020-05-05 Jari Aalto
@@ -94,4 +98,4 @@ Port Notes:
 - Initial release 2007-09-07 Jari Aalto
 
 Cygwin port maintained by: Jari Aalto <jari.aalto@cante.net>
-Copyright (C) 2007-2020 Jari Aalto; Licenced under GPL v2 or later
+Copyright (C) 2007-2021 Jari Aalto; Licenced under GPL v2 or later
